@@ -1,0 +1,19 @@
+// Promise Version
+fetch("mock-api/events.json")
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+// Async/Await Version
+async function fetchEvents() {
+  document.getElementById("loading").style.display = "block";
+  try {
+    const res = await fetch("mock-api/events.json");
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error("Failed to load events", err);
+  } finally {
+    document.getElementById("loading").style.display = "none";
+  }
+}
