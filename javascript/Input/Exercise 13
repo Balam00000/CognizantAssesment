@@ -1,0 +1,17 @@
+console.log("Submitting registration...");
+
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = {
+    name: e.target.elements.name.value,
+    email: e.target.elements.email.value
+  };
+
+  console.log("Payload:", data);
+
+  fetch("https://example.com/register", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  }).then(response => console.log("Server response:", response));
+});
