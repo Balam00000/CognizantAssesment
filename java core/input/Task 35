@@ -1,1 +1,79 @@
+ChatServer.java
+
+
+import java.io.*;
+import java.net.*;
+
+public class ChatServer {
+    public static void main(String[] args) {
+        int port = 12345;
+
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server started. Waiting for client...");
+
+            Socket socket = serverSocket.accept();
+            System.out.println("Client connected!");
+
+            // Streams
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+
+            // Input from server operator
+            BufferedReader serverInput = new BufferedReader(new InputStreamReader(System.in));
+
+            String messageFromClient, messageToClient;
+            while (true) {
+                messageFromClient = input.readLine();
+                if (messageFromClient == null || messageFromClient.equalsIgnoreCase("exit")) break;
+                System.out.println("Client: " + messageFromClient);
+
+                System.out.print("Server: ");
+                messageToClient = serverInput.readLine();
+                output.println(messageToClient);
+            }
+
+            System.out.println("Chat ended.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+ChatClient.java
+
+import java.io.*;
+import java.net.*;
+
+public class ChatClient {
+    public static void main(String[] args) {
+        String host = "localhost";
+        int port = 12345;
+
+        try (Socket socket = new Socket(host, port)) {
+            System.out.println("Connected to server!");
+
+            // Streams
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+
+            // Input from client user
+            BufferedReader clientInput = new BufferedReader(new InputStreamReader(System.in));
+
+            String messageToServer, messageFromServer;
+            while (true) {
+                System.out.print("Client: ");
+                messageToServer = clientInput.readLine();
+                output.println(messageToServer);
+                if (messageToServer.equalsIgnoreCase("exit")) break;
+
+                messageFromServer = input.readLine();
+                System.out.println("Server: " + messageFromServer);
+            }
+
+            System.out.println("Chat ended.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
