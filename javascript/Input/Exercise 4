@@ -1,0 +1,24 @@
+function addEvent(events, event) {
+  events.push(event);
+}
+
+function registerUser(event) {
+  if (event.seats > 0) event.seats--;
+}
+
+function filterEventsByCategory(events, category) {
+  return events.filter(e => e.category === category);
+}
+
+// Closure
+function registrationTracker(category) {
+  let count = 0;
+  return function () {
+    count++;
+    console.log(`Registrations in ${category}: ${count}`);
+  };
+}
+
+function searchEvents(events, callback) {
+  return events.filter(callback);
+}
