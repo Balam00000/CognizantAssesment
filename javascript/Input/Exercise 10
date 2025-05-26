@@ -1,0 +1,10 @@
+const showEvent = ({ name, date }) => {
+  console.log(`${name} on ${date}`);
+};
+
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}`);
+}
+
+const original = [{ name: "Yoga" }];
+const clone = [...original];
