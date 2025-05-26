@@ -1,0 +1,16 @@
+const eventContainer = document.querySelector("#eventContainer");
+
+communityEvents.forEach(event => {
+  const card = document.createElement("div");
+  card.innerText = `${event.name}`;
+  eventContainer.appendChild(card);
+});
+
+function updateUI() {
+  eventContainer.innerHTML = "";
+  communityEvents.forEach(event => {
+    const card = document.createElement("div");
+    card.innerText = `${event.name}`;
+    eventContainer.appendChild(card);
+  });
+}
