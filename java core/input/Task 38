@@ -1,17 +1,34 @@
-HelloBytecode.java
+java -jar cfr-<version>.jar Sample.class
+public class Sample {
+    private String message = "Hello from Java!";
 
-public class HelloBytecode {
-
-    // Method to be analyzed via bytecode
-    public int square(int x) {
-        return x * x;
+    public void display() {
+        System.out.println(this.message);
     }
 
-    // Main method to call 'square'
     public static void main(String[] args) {
-        HelloBytecode obj = new HelloBytecode();
-        int result = obj.square(5);
-        System.out.println("Square: " + result);
+        Sample s = new Sample();
+        s.display();
+    }
+}
+
+DecompileExample.java
+
+
+public class DecompileExample {
+    private int value = 42;
+
+    public int getValue() {
+        return value;
+    }
+
+    public void printValue() {
+        System.out.println("Value is: " + getValue());
+    }
+
+    public static void main(String[] args) {
+        DecompileExample obj = new DecompileExample();
+        obj.printValue();
     }
 }
 
