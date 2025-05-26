@@ -1,0 +1,17 @@
+document.querySelectorAll(".registerBtn").forEach(button => {
+  button.onclick = function () {
+    alert("Registered!");
+  };
+});
+
+document.querySelector("#categoryFilter").onchange = function (e) {
+  filterEventsByCategory(communityEvents, e.target.value);
+};
+
+document.querySelector("#searchInput").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    const keyword = e.target.value.toLowerCase();
+    const results = communityEvents.filter(ev => ev.name.toLowerCase().includes(keyword));
+    console.log(results);
+  }
+});
