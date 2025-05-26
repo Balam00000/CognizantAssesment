@@ -1,1 +1,17 @@
+public class DecompileExample {
+    private int value = 42;
+
+    public int getValue() {
+        return this.value;
+    }
+
+    public void printValue() {
+        System.out.println("Value is: " + this.getValue());
+    }
+
+    public static void main(String[] args) {
+        DecompileExample obj = new DecompileExample();
+        obj.printValue();
+    }
+}
 
