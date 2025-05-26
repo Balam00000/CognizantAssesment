@@ -1,1 +1,10 @@
+Methods in MyService:
+- greet()
+- greetUser(String)
+- add(int, int)
+
+Invoking methods dynamically:
+Hello from MyService!
+Hello, Minato!
+add(10, 20) = 30
 
