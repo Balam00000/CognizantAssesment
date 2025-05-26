@@ -1,1 +1,17 @@
+HelloBytecode.java
+
+public class HelloBytecode {
+
+    // Method to be analyzed via bytecode
+    public int square(int x) {
+        return x * x;
+    }
+
+    // Main method to call 'square'
+    public static void main(String[] args) {
+        HelloBytecode obj = new HelloBytecode();
+        int result = obj.square(5);
+        System.out.println("Square: " + result);
+    }
+}
 
