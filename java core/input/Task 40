@@ -1,1 +1,49 @@
+                                               VirtualThreadDemo.java
 
+import java.time.Duration;
+import java.time.Instant;
+
+public class VirtualThreadDemo {
+    public static void main(String[] args) throws InterruptedException {
+        int threadCount = 100_000;
+
+        System.out.println("Starting virtual threads...");
+
+        Instant startVirtual = Instant.now();
+
+        Thread[] virtualThreads = new Thread[threadCount];
+        for (int i = 0; i < threadCount; i++) {
+            virtualThreads[i] = Thread.startVirtualThread(() -> {
+                System.out.println("Hello from virtual thread " + Thread.currentThread());
+            });
+        }
+
+        // Wait for all virtual threads to finish
+        for (Thread t : virtualThreads) {
+            t.join();
+        }
+
+        Instant endVirtual = Instant.now();
+        System.out.println("Virtual threads completed in: " + Duration.between(startVirtual, endVirtual).toMillis() + " ms");
+
+        System.out.println("\nStarting platform threads...");
+
+        Instant startPlatform = Instant.now();
+
+        Thread[] platformThreads = new Thread[threadCount];
+        for (int i = 0; i < threadCount; i++) {
+            platformThreads[i] = new Thread(() -> {
+                System.out.println("Hello from platform thread " + Thread.currentThread());
+            });
+            platformThreads[i].start();
+        }
+
+        // Wait for all platform threads to finish
+        for (Thread t : platformThreads) {
+            t.join();
+        }
+
+        Instant endPlatform = Instant.now();
+        System.out.println("Platform threads completed in: " + Duration.between(startPlatform, endPlatform).toMillis() + " ms");
+    }
+}
