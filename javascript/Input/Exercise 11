@@ -1,0 +1,12 @@
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const { name, email, event } = e.target.elements;
+
+  if (!name.value || !email.value) {
+    alert("All fields are required!");
+    return;
+  }
+
+  console.log(`Name: ${name.value}, Email: ${email.value}, Event: ${event.value}`);
+});
