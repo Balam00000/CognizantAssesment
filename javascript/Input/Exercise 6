@@ -1,0 +1,9 @@
+const communityEvents = [];
+
+communityEvents.push({ name: "Music Night", category: "music" });
+communityEvents.push({ name: "Cooking Workshop", category: "food" });
+
+const musicEvents = communityEvents.filter(e => e.category === "music");
+
+const displayCards = communityEvents.map(e => `Event: ${e.name}`);
+console.log(displayCards);
