@@ -1,1 +1,67 @@
+                                                                  MyService.java
+
+public class MyService {
+    private String message = "Hello from MyService!";
+
+    public void greet() {
+        System.out.println(message);
+    }
+
+    public void greetUser(String name) {
+        System.out.println("Hello, " + name + "!");
+    }
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+                                                                   ReflectionDemo.java
+
+
+import java.lang.reflect.*;
+
+public class ReflectionDemo {
+    public static void main(String[] args) {
+        try {
+            // Load class dynamically
+            Class<?> clazz = Class.forName("MyService");
+
+            // Create an instance
+            Object obj = clazz.getDeclaredConstructor().newInstance();
+
+            // Get all declared methods
+            Method[] methods = clazz.getDeclaredMethods();
+
+            System.out.println("Methods in MyService:");
+            for (Method method : methods) {
+                System.out.print("- " + method.getName() + "(");
+                Class<?>[] paramTypes = method.getParameterTypes();
+                for (int i = 0; i < paramTypes.length; i++) {
+                    System.out.print(paramTypes[i].getSimpleName());
+                    if (i < paramTypes.length - 1) System.out.print(", ");
+                }
+                System.out.println(")");
+            }
+
+            System.out.println("\nInvoking methods dynamically:");
+
+            // Invoke greet()
+            Method greetMethod = clazz.getMethod("greet");
+            greetMethod.invoke(obj);
+
+            // Invoke greetUser(String)
+            Method greetUserMethod = clazz.getMethod("greetUser", String.class);
+            greetUserMethod.invoke(obj, "Minato");
+
+            // Invoke add(int, int)
+            Method addMethod = clazz.getMethod("add", int.class, int.class);
+            Object result = addMethod.invoke(obj, 10, 20);
+            System.out.println("add(10, 20) = " + result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 
