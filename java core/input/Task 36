@@ -1,1 +1,42 @@
+GitHubFetcher.java
 
+import java.net.http.*;
+import java.net.URI;
+import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class GitHubFetcher {
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.github.com/users/octocat"))
+                .GET()
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Status Code: " + response.statusCode());
+
+            ObjectMapper mapper = new ObjectMapper();
+            GitHubUser user = mapper.readValue(response.body(), GitHubUser.class);
+
+            System.out.println("Parsed Response:\n" + user);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+public class GitHubUser {
+    public String login;
+    public String name;
+    public String location;
+
+    // Optional: override toString
+    public String toString() {
+        return "Login: " + login + "\nName: " + name + "\nLocation: " + location;
+    }
+}
