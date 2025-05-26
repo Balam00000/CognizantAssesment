@@ -1,0 +1,18 @@
+function submitRegistration(data) {
+  fetch("https://example.com/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(response => {
+      alert("Registration successful!");
+    })
+    .catch(err => {
+      alert("Registration failed.");
+    });
+
+  setTimeout(() => {
+    console.log("Simulated server delay done.");
+  }, 2000);
+}
