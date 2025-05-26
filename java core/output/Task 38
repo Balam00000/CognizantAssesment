@@ -1,1 +1,37 @@
+public class HelloBytecode {
+  public HelloBytecode();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Object constructor
+       4: return
+
+  public int square(int);
+    Code:
+       0: iload_1                           // Load parameter x
+       1: iload_1                           // Load x again
+       2: imul                              // x * x
+       3: ireturn                           // Return result
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: new           #2                  // Create HelloBytecode object
+       3: dup
+       4: invokespecial #3                  // Constructor call
+       7: astore_1
+       8: aload_1                           // Load obj
+       9: iconst_5                          // Push 5
+      10: invokevirtual #4                  // Call square(5)
+      13: istore_2                          // Store result
+      14: getstatic     #5                  // Get System.out
+      17: new           #6                  // Create StringBuilder
+      20: dup
+      21: invokespecial #7                  // Call constructor
+      24: ldc           #8                  // Load "Square: "
+      26: invokevirtual #9                  // Append String
+      29: iload_2                           // Load result
+      30: invokevirtual #10                 // Append int
+      33: invokevirtual #11                 // Convert to String
+      36: invokevirtual #12                 // Print line
+      39: return
+}
 
