@@ -1,0 +1,27 @@
+Selectors Playground
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Element selector */
+h2 {
+  color: navy;
+}
+
+/* ID selector */
+#mainHeader {
+  text-align: center;
+}
+
+/* Class selector */
+.eventCard {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Grouping selector */
+h3, p {
+  font-family: Arial, sans-serif;
+}
+
