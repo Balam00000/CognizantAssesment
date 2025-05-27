@@ -1,1 +1,9 @@
+After fetch success (console):
 
+
+[Array of events fetched from API]
+
+
+On error:
+
+Failed to load events Error: ...
