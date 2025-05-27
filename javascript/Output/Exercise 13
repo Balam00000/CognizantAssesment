@@ -1,1 +1,4 @@
+Submitting registration...
+Payload: {name: "John Doe", email: "john@example.com"}
+Server response: Response {...}
 
